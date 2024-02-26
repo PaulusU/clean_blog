@@ -1,0 +1,18 @@
+<% if @blog_posts.present? %>
+<% @blog_posts.each do |post| %>
+    <div class="post-preview">
+    <h2 class="post-title"><%= post.title %></h2>
+    <h3 class="post-subtitle"><%= post.summary %></h3>
+    <p class="post-meta">
+        Posted by <%= post.user.name %> on <%= post.created_at.strftime("%B %d, %Y") %>
+    </p>
+    </div>
+    <hr class="my-4" />
+<% end %>
+    <div class="d-flex justify-content-center my-4">
+        <%= will_paginate @blog_posts %>
+    </div>
+
+<% else %>
+<p>No blog posts found.</p>
+<% end %>
