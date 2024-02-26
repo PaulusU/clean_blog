@@ -1,9 +1,16 @@
-User.create!(name:  "Admin Blog", email: "blog@example.org")
+User.create!(name:  "Admin Blog", 
+             email: "blog@example.org", 
+             password:              "foobar",
+             password_confirmation: "foobar",)
 
 99.times do |n|
   name = Faker::Name.name
-  email = Faker::Internet.unique.email  # Use Faker's unique method to generate unique email addresses
-  User.create!(name: name, email: email)
+  email = Faker::Internet.unique.email # Use Faker's unique method to generate unique email addresses
+  password = "password" 
+  User.create!(name: name, 
+               email: email,  
+               password: password,
+               password_confirmation: password,)
 end
 
 users = User.order(:created_at).take(6)

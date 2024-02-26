@@ -1,0 +1,38 @@
+<% provide(:title, 'Log In') %>
+
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="<%= asset_path('about-bg') %>" class="d-block w-100" alt="..." style="opacity: 0.5;">
+    </div>
+    <div class="carousel-item">
+      <img src="<%= asset_path('home-bg') %>" class="d-block w-100" alt="..." style="opacity: 0.5;">
+    </div>
+    <div class="carousel-item">
+      <img src="<%= asset_path('post-bg') %>" class="d-block w-100" alt="..." style="opacity: 0.5;">
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h1 class="text-center mt-4">Log In</h1>
+
+<div class="row">
+    <div class="col-md-6 mx-auto">
+    <%= form_with(url: login_path, scope: :session) do |f| %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+
+    <p class="text-center">New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+</div>
+
+</div>
