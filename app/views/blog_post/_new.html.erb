@@ -2,9 +2,9 @@
 <% @blog_posts.each do |post| %>
     <div class="post-preview">
     <h2 class="post-title"><%= post.title %></h2>
-    <h3 class="post-subtitle"><%= post.summary %></h3>
+    <h3 class="post-subtitle normal-text"><%= post.summary %></h3>
     <p class="post-meta">
-        Posted by <%= post.user.name %> on <%= post.created_at.strftime("%B %d, %Y") %>
+        Posted by <%= link_to post.user.name, user_path(post.user) %> on <%= post.created_at.strftime("%B %d, %Y") %>
     </p>
     </div>
     <hr class="my-4" />

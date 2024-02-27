@@ -10792,6 +10792,10 @@ header.masthead .post-heading .meta a {
   font-weight: 300;
   margin-bottom: 0.625rem;
 }
+.normal-text {
+  font-weight: normal;
+}
+
 .post-preview > .post-meta {
   font-size: 1.125rem;
   font-style: italic;
@@ -10823,4 +10827,21 @@ input {
 #carouselExampleSlidesOnly .carousel-item img {
   height: 500px;
   object-fit: cover; /* Menyesuaikan gambar ke dalam dimensi yang diberikan */
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
 }

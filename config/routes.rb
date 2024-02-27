@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   root "static_pages#home"
   get '/about', to:'static_pages#about'
   get '/blog_post', to:'static_pages#blog'
-  get '/signup', to:'users#new'
+  get '/signup', to: 'users#new'
+  get '/users', to: 'users#users'
+  get '/upload_blog', to: 'blog_post#upload'
   get    "/login",   to: "sessions#new"
   post   "/login",   to: "sessions#create"
   delete "/logout",  to: "sessions#destroy"
   
   resources :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :blog_posts, only: [:create, :destroy]
 
-  # Defines the root path route ("/")
-  
 end

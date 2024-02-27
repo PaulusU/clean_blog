@@ -1,0 +1,13 @@
+<% if @user.present? %>
+  <% @user.each do |user| %>
+    <%= user.name %>, <%= user.email %> <br>
+    <%= link_to "Update Profile", edit_user_path(user) %> 
+     | <%= link_to "Delete User", user_path(user.id), method: :delete, data: { confirm: "Are you sure?" } %> <br>
+    <hr class="my-4" />
+  <% end %>
+  <div class="d-flex justify-content-center my-4">
+    <%= will_paginate @user %>
+  </div> 
+<% else %>
+  <p>No users found.</p>
+<% end %>
