@@ -4,7 +4,11 @@
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
-            <%= render 'blog_post/new' %>
+            <%= form_tag(recent_search_path, method: "get") do %>
+                <%= text_field_tag :q, params[:q], placeholder: "Search Blog" %>
+                <%= submit_tag "Search" %>
+            <% end %>
+            <%= render 'blog_posts/new' %>
         </div>
     </div>
 </div>

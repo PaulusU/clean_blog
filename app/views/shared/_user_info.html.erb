@@ -1,0 +1,5 @@
+<div class="text-center">
+  <span>Has Uploaded</span>
+  <span><%= pluralize(current_user.blog_post.count, "Blog") %></span> <br>
+  <span><%= link_to "View Profile", current_user %></span>
+</div>

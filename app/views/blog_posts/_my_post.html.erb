@@ -1,0 +1,17 @@
+<h1 class="text-center mt-4 mb-3"><%= @user.name %> Blog</h1>
+<% if @blog_posts.any? %>
+  <% @blog_posts.each do |blog_post| %>
+    <div class="post-preview">
+      <h2 class="post-title"><%= blog_post.title %></h2>
+      <h3 class="post-subtitle"><%= blog_post.summary %></h3>
+      <p class="post-meta">Created Blog <%= time_ago_in_words(blog_post.created_at) %> ago </p>
+    </div>
+    <% if current_user?(blog_post.user) %>
+      <%= link_to "Delete Blog", delete_blog_post_path(blog_post), data: { "turbo-method": :delete,
+                                               turbo_confirm: "You sure?" } %>
+    <% end %>
+    <hr class="my-4" />
+  <% end %>
+<% else %>
+  <p>No blog posts found.</p>
+<% end %>

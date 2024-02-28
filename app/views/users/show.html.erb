@@ -1,7 +1,17 @@
-<% provide(:title, @user.name) %>
-
-<%= @user.name %>, <%= @user.email %>
-<br>
-<%= link_to "Update Profile", edit_user_path(current_user) %> 
-| <%= link_to "delete", @user, data: { "turbo-method": :delete,
-                                        turbo_confirm: "You sure?" } %>
+<% if logged_in? %>
+  <% provide(:title, @user.name) %>
+  <%= @user.name %>, <%= @user.email %>
+  <br>
+  
+  <% if current_user == @user %>
+    <%= link_to "Update Profile", edit_user_path(current_user) %> |
+    <%= link_to "Delete", user_path(current_user), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %> 
+  <% end %>
+  
+  <%= render 'blog_posts/my_post' %>
+  
+<% else %>
+  <script type="text/javascript">
+    window.location.href = "<%= login_path %>";
+  </script>
+<% end %>

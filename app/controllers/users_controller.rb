@@ -1,16 +1,19 @@
 class UsersController < ApplicationController  
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
-  before_action :admin_user,     only: :destroy
+
 
   def show
     @user = User.find(params[:id])
+    @blog_posts = @user.blog_post.order(created_at: :desc)
+  rescue ActiveRecord::RecordNotFound
+    flash[:error] = "User not found"
+    redirect_to root_path
   end
 
   def users
     @user = User.all
     @user = User.paginate(page: params[:page])
   end
-  
   
   def new
     @user = User.new
@@ -19,6 +22,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      flash[:success] = "Registration Success !"
       redirect_to login_path
     else
       render 'new', status: :unprocessable_entity
@@ -32,7 +36,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    redirect_to users_url, status: :see_other
+    redirect_to login_path, status: :see_other
   end
 
   def update
