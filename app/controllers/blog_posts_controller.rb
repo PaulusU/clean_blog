@@ -15,7 +15,10 @@ class BlogPostsController < ApplicationController
   end
 
   def edit
-    @blog_post = BlogPost.find(params[:id])
+    if current_user
+      @blog_post = BlogPost.find(params[:id])
+    else 
+      redirect_to root_path
   end
 
   def update

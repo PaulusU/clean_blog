@@ -10,8 +10,12 @@ class UsersController < ApplicationController
   end
 
   def users
-    @user = User.all
-    @user = User.paginate(page: params[:page])
+    if current_user.admin?
+      @user = User.all
+      @user = User.paginate(page: params[:page])
+    else
+      redirect_to root_path, status: :see_other
+    end
   end
   
   def new
@@ -29,7 +33,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    if !current_user
+      @user = User.find(params[:id])
+    else 
+      redirect_to root_path
+    end
   end
 
   def destroy

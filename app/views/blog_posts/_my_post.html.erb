@@ -1,4 +1,4 @@
-<h1 class="text-center mt-4 mb-3">You has already Uploaded <%= pluralize(current_user.blog_post.count, "Blog") %></h1>
+<h1 class="text-center mt-4 mb-3">Already Uploaded <%= pluralize(current_user.blog_post.count, "Blog") %></h1>
 <% if @blog_posts.any? %>
   <% @blog_posts.each do |blog_post| %>
     <div class="post-preview">
