@@ -1,6 +1,2 @@
-<% if logged_in? %>
-  <% provide(:title, @blog_post.title) %>
-  <%= @blog_post.title %> <br>
-  <%= @blog_post.summary %> <br>
-  <%= @blog_post.content %> <br>
-<% end %>
+<% provide(:title, @blog_post.title) %>
+<%= @blog_post.content %>

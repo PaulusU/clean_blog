@@ -1,14 +1,25 @@
 <% if @blog_posts.present? %>
   <% @blog_posts.each do |post| %>
     <div class="post-preview">
-      <h2 class="post-title"><%= link_to post.title, "#" %></h2>
+      <h2 class="post-title"><%= link_to post.title, show_blog_post_path(post) %></h2>
       <h3 class="post-subtitle normal-text"><%= post.summary %></h3>
       <p class="post-meta">
         Posted by <%= link_to post.user.name, user_path(post.user) %> <%= time_ago_in_words(post.created_at) %> ago.
       </p>
       <% if current_user && current_user.admin? %>
-        <%= link_to "Update Blog", "#" %> | <%= link_to "Delete Blog", "#" %>
+        <%= link_to "Update Blog", edit_blog_post_path(post) %> | <%= link_to "Delete Blog", delete_blog_post_path(post), data: { "turbo-method": :delete,
+                                                                                     turbo_confirm: "You sure?" } %>
       <% end %>
+      <p>
+      Tags : 
+      <% if post.tags.any? %>
+        <% post.tags.each do |tag| %>
+          <%= tag.name %>
+        <% end %>
+      <% else %>
+        -
+      <% end %>
+    </p>
       <hr class="my-4" />
     </div>
   <% end %>

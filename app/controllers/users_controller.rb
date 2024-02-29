@@ -1,7 +1,6 @@
 class UsersController < ApplicationController  
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
 
-
   def show
     @user = User.find(params[:id])
     @blog_posts = @user.blog_post.order(created_at: :desc)
@@ -36,7 +35,11 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    redirect_to login_path, status: :see_other
+    if current_user.admin?
+      redirect_to users_path
+    else
+      redirect_to login_path, status: :see_other
+    end
   end
 
   def update

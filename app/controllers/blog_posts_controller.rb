@@ -1,5 +1,5 @@
 class BlogPostsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, only: [:create, :destroy, :edit, :update]
   before_action :correct_user,   only: :destroy
 
   def index
@@ -10,6 +10,28 @@ class BlogPostsController < ApplicationController
     @blog_post = current_user.blog_post.build if logged_in?
   end  
 
+  def show
+    @blog_post = BlogPost.find(params[:id])
+  end
+
+  def edit
+    @blog_post = BlogPost.find(params[:id])
+  end
+
+  def update
+    @blog_post = BlogPost.find(params[:id])
+    if @blog_post.update(blog_post_params)
+      flash[:success] = "Blog updated"
+      if current_user.admin?
+      redirect_to blog_post_path
+    else
+      redirect_to user_path(@blog_post.user)
+    end
+    else
+      render 'edit', status: :unprocessable_entity
+    end
+  end
+  
   def search
     @blog_posts = BlogPost.paginate(page: params[:page])
     @blog_posts = BlogPost.where("title LIKE :query OR summary LIKE :query", query: "%#{params[:q]}%")
@@ -17,6 +39,13 @@ class BlogPostsController < ApplicationController
   
   def create
     @blog_post = current_user.blog_post.build(blog_post_params)
+    tags = params[:blog_post][:tags].split(",").map(&:strip)
+    tags.each do |tag_name|
+      tag = Tag.find_or_create_by(name: tag_name)
+      @blog_post.tags << tag
+    end
+
+    @blog_post.image.attach(params[:blog_post][:image])
     if @blog_post.save
       flash[:success] = "Blog Created!"
       redirect_to blog_post_path
@@ -39,12 +68,15 @@ class BlogPostsController < ApplicationController
   private
 
   def blog_post_params
-    params.require(:blog_post).permit(:title, :summary, :content)
+    params.require(:blog_post).permit(:title, :summary, :content, :image)
   end
 
   def correct_user
-    @blog_post = current_user.blog_post.find_by(id: params[:id])
-    redirect_to root_url, status: :see_other if @blog_post.nil?
-  end
+    @blog_post = BlogPost.find(params[:id])
+    unless current_user && (current_user.admin? || current_user == @blog_post.user)
+      flash[:danger] = "Unauthorized access!"
+      redirect_to root_url
+    end
+  end  
 
 end

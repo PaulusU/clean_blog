@@ -124,6 +124,37 @@
     </div>
   </div>
 </div>
+<% elsif request.path.start_with?('/blog_post/') %>
+<% if @blog_post.image.attached? %>
+  <header class="masthead" style="background-image: url('<%= url_for(@blog_post.image) %>')">
 <% else %>
-<!-- Default header content here -->
+  <header class="masthead" style="background-image: url('<%= asset_path('post-bg.jpg') %>')">
+<% end %>
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1><%= @blog_post.title %></h1>
+                    <h2 class="subheading"><%= @blog_post.summary %></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<% elsif request.path.match(/\/blog_posts\/\d+\/edit/) %>
+<div id="carouselExampleSlidesOnly" class="carousel slide masthead" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="<%= asset_path('about-bg.jpg') %>" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="<%= asset_path('home-bg.jpg') %>" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="<%= asset_path('post-bg.jpg') %>" class="d-block w-100" alt="...">
+    </div>
+  </div>
+</div>
+
 <% end %>

@@ -1,6 +1,7 @@
 <%= form_with(model: @blog_post) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
+<%= hidden_field_tag :id, @blog_post.id %>
 <div class="mb-3">
     <%= f.label :title, class: "form-label" %>
     <%= f.text_field :title, class: "form-control" %>
@@ -13,14 +14,6 @@
     <%= f.label :content, class: "form-label" %>
     <%= f.text_area :content, placeholder: "Compose new Blog...", class: "form-control" %>
 </div>
-<span class="image">
-    <%= f.label :image_header, class: "form-label" %>
-    <%= f.file_field :image, class:"form-control"%>
-</span>
-<div class="mb-3">
-    <%= f.label :tags, class: "form-label" %>
-    <%= f.text_field :tags, class: "form-control", id: "tags-input", placeholder: "Add tags" %>
-</div>
 
-<%= f.submit "Upload", class: "btn btn-primary btn-block mt-3 mb-5" %>
+<%= f.submit "Save Changes", class: "btn btn-primary btn-block mt-3 mb-5" %>
 <% end %>
