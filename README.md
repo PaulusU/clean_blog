@@ -23,8 +23,7 @@ To get started with Clean Blog Rails, follow these steps:
 git clone https://github.com/PaulusU/clean-blog-rails.git
 2. Install dependencies: <br>
 $ bundle install
-3. Set up the database:
-<br>
+3. Set up the database:<br>
 a. rails db:create <br>
 b. rails db:migrate
 4. Run the server: <br>
