@@ -33,9 +33,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if !current_user
-      @user = User.find(params[:id])
+    @user = User.find(params[:id])
+    if current_user == @user || current_user.admin?
+      return false
     else 
+      flash[:danger] = "You don't have a access !"
       redirect_to root_path
     end
   end

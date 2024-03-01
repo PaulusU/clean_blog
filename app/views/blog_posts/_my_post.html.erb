@@ -1,8 +1,8 @@
-<h1 class="text-center mt-4 mb-3">Already Uploaded <%= pluralize(current_user.blog_post.count, "Blog") %></h1>
 <% if @blog_posts.any? %>
   <% @blog_posts.each do |blog_post| %>
+  <h1 class="text-center mt-4 mb-3">Already Uploaded <%= pluralize(current_user.blog_post.count, "Blog") %></h1>
     <div class="post-preview">
-      <h2 class="post-title"><%= blog_post.title %></h2>
+      <h2 class="post-title"><%= link_to blog_post.title, show_blog_post_path(blog_post) %></h2>
       <h3 class="post-subtitle"><%= blog_post.summary %></h3>
       <p class="post-meta">Created Blog <%= time_ago_in_words(blog_post.created_at) %> ago </p>
     </div>
@@ -14,5 +14,6 @@
     <hr class="my-4" />
   <% end %>
 <% else %>
+  <h1 class="text-center mt-4 mb-3">Upload your first Blog<h1></h1>
   <p>No blog posts found.</p>
 <% end %>

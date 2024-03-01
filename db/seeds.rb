@@ -22,16 +22,22 @@ users = User.order(:created_at).take(6)
 50.times do
   title = Faker::Lorem.sentence(word_count: 5)
   summary = Faker::Lorem.sentence(word_count: 5)
-  content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.blog_posts.create!(title: title, summary: summary, content: content) }
+  
+  content = ""
+  while content.split.size < 300
+    content = Faker::Lorem.paragraph_by_chars(number: 2000, supplemental: false)
+  end
+  
+  users.each { |user| user.blog_post.create!(title: title, summary: summary, content: content) }
 end
+
 
 50.times do
   title = Faker::Lorem.sentence(word_count: 5)
   summary = Faker::Lorem.sentence(word_count: 5)
   content = Faker::Lorem.sentence(word_count: 5)
   users.each do |user|
-    blog_post = user.blog_posts.create!(title: title, summary: summary, content: content)
+    blog_post = user.blog_post.create!(title: title, summary: summary, content: content)
     # Assign random tags to the blog post
     random_tags = Tag.order("RANDOM()").limit(rand(3..5)) # Randomly select 3 to 5 tags
     blog_post.tags << random_tags

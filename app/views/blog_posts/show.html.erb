@@ -1,2 +1,2 @@
 <% provide(:title, @blog_post.title) %>
-<%= @blog_post.content %>
+<%= simple_format(@blog_post.content) %>

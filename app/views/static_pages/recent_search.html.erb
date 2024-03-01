@@ -7,15 +7,16 @@
           <% @blog_posts.each do |post| %>
             <!-- Display blog post details -->
             <div class="post-preview">
-            <h2 class="post-title"><%= post.title %></h2>
+            <h2 class="post-title"><%= link_to post.title, show_blog_post_path(post) %></h2>
             <h3 class="post-subtitle normal-text"><%= post.summary %></h3>
             <p class="post-meta">
                 Posted by <%= link_to post.user.name, user_path(post.user) %> on <%= post.created_at.strftime("%B %d, %Y") %>
             </p>
             </div>
             <% if current_user && current_user.admin? %>
-              <%= link_to "Update Blog", "#" %> | <%= link_to "Delete Blog", delete_blog_post_path(post), data: { "turbo-method": :delete,
-                                                                                      turbo_confirm: "You sure?" } %>
+              <%= link_to "Update Blog", edit_blog_post_path(post) %> | 
+              <%= link_to "Delete Blog", delete_blog_post_path(post), data: { "turbo-method": :delete,
+                                               turbo_confirm: "You sure?" } %>
             <% end %>
             <hr class="my-4 mb-5" />
           <% end %>

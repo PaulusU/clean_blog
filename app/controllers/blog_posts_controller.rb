@@ -19,6 +19,7 @@ class BlogPostsController < ApplicationController
       @blog_post = BlogPost.find(params[:id])
     else 
       redirect_to root_path
+    end
   end
 
   def update
