@@ -31,7 +31,7 @@ $ rails server
 5. Open your web browser and navigate to `http://localhost:3000` to view the application.
 
 ## Login as Admin
-Email : admin@example.org
+Email : admin@example.org <br>
 Password : foobar
 
 ## Configuration
