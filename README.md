@@ -30,6 +30,10 @@ b. rails db:migrate
 $ rails server
 5. Open your web browser and navigate to `http://localhost:3000` to view the application.
 
+## Login as Admin
+Email : admin@example.org
+Password : foobar
+
 ## Configuration
 
 You can customize the application by modifying the configuration files in the `config` directory. For example:
