@@ -25,13 +25,15 @@ git clone https://github.com/PaulusU/clean-blog-rails.git
 $ bundle install
 3. Set up the database:<br>
 a. rails db:create <br>
-b. rails db:migrate
-4. Run the server: <br>
+b. rails db:migrate <br>
+c. rails db:seed
+5. Run the server: <br>
 $ rails server
-5. Open your web browser and navigate to `http://localhost:3000` to view the application.
+6. Open your web browser and navigate to `http://localhost:3000` to view the application.
 
 ## Login as Admin
-Email : admin@example.org <br>
+
+Email : blog@example.org <br>
 Password : foobar
 
 ## Configuration
