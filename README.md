@@ -52,7 +52,3 @@ Clean Blog Rails can be easily deployed to hosting platforms like Heroku. Follow
 
 - Clean Blog template by Start Bootstrap: [https://startbootstrap.com/themes/clean-blog/](https://startbootstrap.com/themes/clean-blog/)
 - Ruby on Rails: [https://rubyonrails.org/](https://rubyonrails.org/)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
