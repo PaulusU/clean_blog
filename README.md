@@ -2,7 +2,7 @@
 
 # Clean Blog Rails
 
-Welcome to Clean Blog Rails! This is a simple Ruby on Rails application based on the Clean Blog template by Start Bootstrap. It provides a minimalist and elegant design for your blog.
+Welcome to Clean Blog Rails! This is a simple Ruby on Rails application based on the Clean Blog template by Start Bootstrap. 
 
 ## Features
 
@@ -43,10 +43,6 @@ You can customize the application by modifying the configuration files in the `c
 - `config/routes.rb` for defining routes
 - `config/database.yml` for configuring the database
 - `config/application.rb` for application-wide settings
-
-## Deployment
-
-Clean Blog Rails can be easily deployed to hosting platforms like Heroku. Follow the platform-specific deployment instructions to deploy your application.
 
 ## Credits
 
